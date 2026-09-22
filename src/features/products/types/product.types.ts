@@ -6,6 +6,21 @@ export type ProductOption = {
   values: string[];
 };
 
+export type ScentAnatomy = {
+  top: string;
+  heart: string;
+  base: string;
+  narrative?: string;
+};
+
+export type ProductDetailsInfo = {
+  scentAnatomy?: ScentAnatomy;
+  concentration?: string;
+  longevity?: string;
+  sillage?: string;
+  ingredients?: string;
+};
+
 export type Product = {
   id: ProductId;
   name: string;
@@ -17,13 +32,10 @@ export type Product = {
   scentFamily: string;
   occasion: string;
   options: ProductOption[];
+  details?: ProductDetailsInfo;
 };
 
-export type ProductSort =
-  | "name-asc"
-  | "name-desc"
-  | "price-asc"
-  | "price-desc";
+export type ProductSort = "name-asc" | "name-desc" | "price-asc" | "price-desc";
 
 export type ProductListQuery = {
   search?: string;
@@ -40,7 +52,4 @@ export type ProductListResult = {
   pageSize: number;
 };
 
-export type ProductSearchParams = Record<
-  string,
-  string | string[] | undefined
->;
+export type ProductSearchParams = Record<string, string | string[] | undefined>;

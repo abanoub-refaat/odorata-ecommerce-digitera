@@ -11,9 +11,7 @@ const SORT_VALUES: ProductSort[] = [
   "price-desc",
 ];
 
-function firstValue(
-  value: string | string[] | undefined,
-): string | undefined {
+function firstValue(value: string | string[] | undefined): string | undefined {
   if (Array.isArray(value)) {
     return value[0];
   }
@@ -48,8 +46,6 @@ export function parseProductListQuery(
       : undefined,
     page: Number.isFinite(pageValue) && pageValue > 0 ? pageValue : 1,
     pageSize:
-      Number.isFinite(pageSizeValue) && pageSizeValue > 0
-        ? pageSizeValue
-        : 6,
+      Number.isFinite(pageSizeValue) && pageSizeValue > 0 ? pageSizeValue : 6,
   };
 }

@@ -120,9 +120,7 @@ export function ProductFilters() {
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
       >
-        <span>
-          Filters{selectedCount > 0 ? ` (${selectedCount})` : ""}
-        </span>
+        <span>Filters{selectedCount > 0 ? ` (${selectedCount})` : ""}</span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/icons/chevron-down.svg"
@@ -144,7 +142,9 @@ export function ProductFilters() {
           options={CATEGORIES}
           selected={categories}
           tone="gold"
-          onToggle={(id) => setCategories((current) => toggleValue(current, id))}
+          onToggle={(id) =>
+            setCategories((current) => toggleValue(current, id))
+          }
         />
         <div className="h-px w-full bg-[#ebe6de]" />
         <FilterBlock

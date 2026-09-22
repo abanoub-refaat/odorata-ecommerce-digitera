@@ -13,11 +13,7 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
-export default function ProductsLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function ProductsLayout({ children }: { children: ReactNode }) {
   return (
     <div
       className={`${manrope.variable} ${instrumentSerif.variable} min-h-full bg-[#faf8f5] font-[family-name:var(--font-manrope)] text-[#1a1a1a]`}
