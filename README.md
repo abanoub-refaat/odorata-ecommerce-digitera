@@ -1,123 +1,107 @@
-# Storefront
+# Odorata | Artisanal Fragrance Storefront
 
-Team-ready scaffold for a product catalog and shopping cart. The product is **not fully implemented**. This repository gives each developer an isolated feature boundary so user stories can be built in parallel with few shared-file merge conflicts.
+A responsive e-commerce storefront for a fictional luxury perfume house. Browse hand-blended fragrances by scent family, occasion, and collection, view product details, and manage a shopping cart.
 
-> Features should own their implementation. Shared code should remain minimal and genuinely reusable.
+**[Live Demo](https://odorata-mu.vercel.app)**
 
-## Technology stack
+## Features
 
-- Next.js (App Router)
-- TypeScript
-- React
-- Tailwind CSS
-- TanStack Query
-- Zustand
-- Jest
-- Cypress
-- ESLint
-- Prettier
-- pnpm
+- **Product catalog** with search, filtering, and sorting
+- **Scent-family browsing** (Floral, Woody, Oriental, Fresh)
+- **Occasion curations** (personal ritual, ceremonial, gift sets, milestones)
+- **Collections and categories** (Pure Extractions, Private Reserve, Atelier Oils, Discovery Vault)
+- **Product detail pages** with dynamic routes
+- **Shopping cart** with line items and totals, managed with Zustand
+- **URL-driven filters**, so filtered views are shareable and survive refresh
+- **Responsive design** across mobile, tablet, and desktop
 
-No extra libraries were added beyond this stack. Class-name joining is a tiny local helper (`src/lib/utils/cn.ts`) instead of another dependency.
+## Tech Stack
 
-## Prerequisites
+| Area | Tools |
+| --- | --- |
+| Framework | Next.js (App Router), React, TypeScript |
+| Styling | Tailwind CSS |
+| Data fetching | TanStack Query |
+| State | Zustand (cart) |
+| Testing | Jest, Cypress |
+| Tooling | ESLint, Prettier, pnpm |
+| Deployment | Vercel |
 
-- Node.js 20 or later
-- pnpm 10 or later (`corepack enable` is recommended)
+## Getting Started
 
-## Installation
+**Prerequisites:** Node.js 20+ and pnpm 10+ (`corepack enable` is recommended).
 
 ```bash
+git clone https://github.com/abanoub-refaat/perfume-ecommerce-digitera.git
+cd perfume-ecommerce-digitera
 pnpm install
 cp .env.example .env.local
-```
-
-## Development
-
-```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The home route redirects to `/products`.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Build
+### Environment Variables
 
-```bash
-pnpm build
-pnpm start
-```
-
-## Tests
-
-```bash
-pnpm typecheck
-pnpm lint
-pnpm test
-```
-
-End-to-end tests need the app running:
-
-```bash
-pnpm dev
-pnpm test:e2e
-# or
-pnpm cypress:open
-```
-
-## Environment setup
-
-Copy `.env.example` to `.env.local`. Never commit secrets.
-
-| Variable | Purpose |
+| Variable | Description |
 | --- | --- |
-| `NEXT_PUBLIC_API_BASE_URL` | Base URL for a future catalog HTTP API. Leave empty while mocks are enabled. |
-| `NEXT_PUBLIC_USE_MOCK_API` | `true` (default) uses in-repo mock product data. Set `false` only when a real API exists. |
+| `NEXT_PUBLIC_USE_MOCK_API` | `true` (default) serves in-repo mock product data. Set to `false` once a real API exists. |
+| `NEXT_PUBLIC_API_BASE_URL` | Base URL of the catalog API. Leave empty while mocks are enabled. |
 
-There is **no backend** in this repository. Mock data lives in `src/features/products/services/` and is separate from the HTTP service stub.
+> **Note:** There is currently no backend. Product data is mocked in `src/features/products/services/`.
 
-## Project architecture
+## Scripts
 
-```text
-app            thin routes — map URLs to features
-  ↓
-features       product capabilities own UI, hooks, services, types, state
-  ↓
-shared UI / lib / config
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Start the development server |
+| `pnpm build` / `pnpm start` | Production build and serve |
+| `pnpm typecheck` | Run the TypeScript compiler checks |
+| `pnpm lint` | Lint with ESLint |
+| `pnpm test` | Run Jest unit tests |
+| `pnpm test:e2e` | Run Cypress end-to-end tests (app must be running) |
+| `pnpm cypress:open` | Open the Cypress runner |
+
+## Project Structure
+
+The codebase is organized by feature. Routes stay thin and each feature owns its UI, hooks, services, types, and state.
+
 ```
-
-- **Routes stay thin.** Business logic belongs in `src/features/<name>/`.
-- **Features do not import another feature's internals.** If two features must meet, compose them in the route or use that feature's public `index.ts`.
-- **State stays local.** TanStack Query is used for product server/cache reads. Zustand is used only for the cart.
-- **No giant shared files.** Do not add a global `utils.ts`, `store.ts`, `api.ts`, or `types/index.ts`.
-
-## Feature structure
-
-```text
-src/features/products/     catalog listing, search, filters, sort, details
-src/features/cart/         cart page, line items, totals, add-to-cart
+src/
+├── app/                 # Routes: map URLs to features
+├── features/
+│   ├── products/        # Catalog, search, filters, sorting, details
+│   └── cart/            # Cart page, line items, totals, add-to-cart
+├── components/ui/       # Shared UI primitives
+└── lib/                 # Shared helpers
 ```
 
 Each feature follows the same shape:
 
-```text
-components/   UI for this feature only
-hooks/        feature hooks
-services/     feature API boundaries (products)
-store/        feature client state (cart)
-types/        feature types
-utils/        feature helpers
-index.ts      public API other layers may import
+```
+components/   hooks/   services/   store/   types/   utils/   index.ts
 ```
 
-See [docs/FEATURE_OWNERSHIP.md](docs/FEATURE_OWNERSHIP.md) for user-story mapping.
+**Conventions**
 
-## Development guidelines
+- Features do not import each other's internals; they communicate through each feature's public `index.ts`.
+- Server/cache state lives in TanStack Query; client state (the cart) lives in Zustand.
+- Shared code stays minimal and genuinely reusable.
 
-1. Pick a user story and open its feature directory.
-2. Implement components, hooks, services, and types **inside that feature**.
-3. Add colocated tests (`*.test.ts` / `*.test.tsx`) next to the code.
-4. Touch `src/app` only when a route needs new wiring.
-5. Import another feature only through its `index.ts`, and only when composition in the route is not enough.
-6. Keep `src/components/ui` limited to primitives used by more than one feature.
-7. Do not move feature code into shared folders "just in case".
-8. Run `pnpm typecheck`, `pnpm lint`, and `pnpm test` before opening a PR.
+## Roadmap
+
+Planned next steps to turn this into a full-stack application:
+
+- [ ] REST API with NestJS, PostgreSQL, and Prisma
+- [ ] Authentication (JWT) with user and admin roles
+- [ ] Server-side persistent carts
+- [ ] Orders and checkout with Stripe (test mode)
+- [ ] Admin dashboard for product and order management
+- [ ] CI pipeline and API documentation
+
+## Author
+
+**Abanoub Refaat**
+
+- GitHub: [@abanoub-refaat](https://github.com/abanoub-refaat)
+- LinkedIn: [abanoubrefaat](https://www.linkedin.com/in/abanoubrefaat/)
