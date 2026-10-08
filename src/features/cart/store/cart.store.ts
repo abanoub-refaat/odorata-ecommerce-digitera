@@ -13,6 +13,7 @@ type CartStore = {
   removeItem: (lineId: string) => void;
   increment: (lineId: string) => void;
   decrement: (lineId: string) => void;
+  clearCart: () => void;
 };
 
 export const useCartStore = create<CartStore>((set) => ({
@@ -56,4 +57,5 @@ export const useCartStore = create<CartStore>((set) => ({
         return [{ ...line, quantity: line.quantity - 1 }];
       }),
     })),
+  clearCart: () => set({ lines: [] }),
 }));

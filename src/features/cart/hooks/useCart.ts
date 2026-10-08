@@ -12,6 +12,7 @@ export function useCart() {
   const removeItem = useCartStore((state) => state.removeItem);
   const increment = useCartStore((state) => state.increment);
   const decrement = useCartStore((state) => state.decrement);
+  const clearCart = useCartStore((state) => state.clearCart);
 
   return {
     lines,
@@ -19,6 +20,7 @@ export function useCart() {
     removeItem,
     increment,
     decrement,
+    clearCart,
     total: getCartTotal(lines),
     quantity: getCartQuantity(lines),
   };

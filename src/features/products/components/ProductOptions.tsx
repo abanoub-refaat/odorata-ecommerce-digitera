@@ -41,7 +41,7 @@ export function ProductOptions({
                     key={value}
                     type="button"
                     onClick={() => onChange(option.id, value)}
-                    className={`min-w-[72px] rounded-md px-4 py-2 text-[13px] font-medium transition-all ${
+                    className={`min-w-[72px] cursor-pointer rounded-md px-4 py-2 text-[13px] font-medium transition-all ${
                       isSelected
                         ? "border-2 border-[#1a1a1a] bg-white text-[#1a1a1a] shadow-xs"
                         : "border border-[#ebe6de] bg-white text-[#605a54] hover:border-[#1a1a1a]/40 hover:text-[#1a1a1a]"

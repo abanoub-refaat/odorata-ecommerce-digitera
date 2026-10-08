@@ -50,7 +50,7 @@ export function ProductImages({ product }: ProductImagesProps) {
                 key={`${img}-${index}`}
                 type="button"
                 onClick={() => setSelectedImageIndex(index)}
-                className={`relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-[#f5f2eb] transition-all focus:outline-none ${
+                className={`relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-lg bg-[#f5f2eb] transition-all focus:outline-none ${
                   isSelected
                     ? "ring-2 ring-[#1a1a1a] ring-offset-2 ring-offset-[#faf8f5]"
                     : "border border-[#ebe6de] opacity-75 hover:opacity-100"

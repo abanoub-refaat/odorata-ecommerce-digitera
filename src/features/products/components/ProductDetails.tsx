@@ -77,7 +77,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <button
             type="button"
             onClick={() => toggleAccordion("scent")}
-            className="flex w-full items-center justify-between text-left text-[14px] font-semibold text-[#1a1a1a] transition-colors hover:text-[#c5a880]"
+            className="flex w-full cursor-pointer items-center justify-between text-left text-[14px] font-semibold text-[#1a1a1a] transition-colors hover:text-[#c5a880]"
           >
             <span>Scent Anatomy</span>
             <span className="text-[18px] font-light text-[#605a54]">
@@ -127,7 +127,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <button
             type="button"
             onClick={() => toggleAccordion("longevity")}
-            className="flex w-full items-center justify-between text-left text-[14px] font-semibold text-[#1a1a1a] transition-colors hover:text-[#c5a880]"
+            className="flex w-full cursor-pointer items-center justify-between text-left text-[14px] font-semibold text-[#1a1a1a] transition-colors hover:text-[#c5a880]"
           >
             <span>Longevity & Sillage</span>
             <span className="text-[18px] font-light text-[#605a54]">
@@ -165,7 +165,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           <button
             type="button"
             onClick={() => toggleAccordion("ingredients")}
-            className="flex w-full items-center justify-between text-left text-[14px] font-semibold text-[#1a1a1a] transition-colors hover:text-[#c5a880]"
+            className="flex w-full cursor-pointer items-center justify-between text-left text-[14px] font-semibold text-[#1a1a1a] transition-colors hover:text-[#c5a880]"
           >
             <span>Ingredients & Care</span>
             <span className="text-[18px] font-light text-[#605a54]">

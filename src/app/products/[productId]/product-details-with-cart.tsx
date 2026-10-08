@@ -42,7 +42,7 @@ function ProductCartActions({
             type="button"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             disabled={quantity <= 1}
-            className="flex size-8 items-center justify-center text-lg font-light text-[#1a1a1a] transition-opacity hover:opacity-70 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex size-8 cursor-pointer items-center justify-center text-lg font-light text-[#1a1a1a] transition-opacity hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="Decrease quantity"
           >
             −
@@ -53,7 +53,7 @@ function ProductCartActions({
           <button
             type="button"
             onClick={() => setQuantity((q) => q + 1)}
-            className="flex size-8 items-center justify-center text-lg font-light text-[#1a1a1a] transition-opacity hover:opacity-70"
+            className="flex size-8 cursor-pointer items-center justify-center text-lg font-light text-[#1a1a1a] transition-opacity hover:opacity-70"
             aria-label="Increase quantity"
           >
             +
@@ -64,7 +64,7 @@ function ProductCartActions({
         <button
           type="button"
           onClick={handleAddToCart}
-          className="flex h-12 flex-1 items-center justify-center rounded-md bg-[#1a1a1a] px-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white transition-all hover:bg-black active:scale-[0.99]"
+          className="flex h-12 flex-1 cursor-pointer items-center justify-center rounded-md bg-[#1a1a1a] px-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-white transition-all hover:bg-black active:scale-[0.99]"
         >
           {isAdded ? "Added to Cart ✓" : "Add to Cart"}
         </button>
